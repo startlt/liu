@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace映射dao接口的全路径 -->
+<mapper namespace="com.cssl.dao.usersMapper">
+
+
+    <select id="selectAll" resultType="users">
+        select * from users
+    </select>
+    <resultMap id="aa" type="subject">
+        <id column="sid" property="sid"></id>
+        <collection ofType="options" property="optionss">
+            <id column="oid" property="oid"></id>
+        </collection>
+    </resultMap>
+    <select id="userandoptions" resultMap="aa">
+        SELECT * FROM SUBJECT s INNER JOIN OPTIONS o ON s.sid=o.osid
+    </select>
+
+    <select id="ad" resultMap="aa">
+        SELECT * FROM SUBJECT s INNER JOIN OPTIONS o ON s.sid=o.osid
+    </select>
+
+</mapper>

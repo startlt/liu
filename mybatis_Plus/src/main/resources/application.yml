@@ -1,0 +1,54 @@
+#视图解析器
+spring:
+   mvc:
+     view:
+        prefix: /
+        suffix: .html
+
+#映射静态资源       （映射所有，static-locations下的所有东西都放过static-path-pattern: /**）
+     static-path-pattern: /**
+   resources:
+     static-locations: classpath:/templates/,classpath:/META-NF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
+
+#数据源
+#spring:
+   datasource:
+     driver-class-name: com.mysql.cj.jdbc.Driver
+     url: jdbc:mysql:///myvote?serverTimezone=GMT
+     username: root
+     password: root
+#Thymeleaf配置
+   thymeleaf:
+       encoding: UTF-8
+       #开发时关闭缓存,不然没法看到实时页面(要重启)
+       cache: false
+       prefix: classpath:/templates/ #(默认)
+       suffix: .html		  #(默认)
+
+#mybatisPlus配置
+mybatis-plus:
+  typeAliasesPackage: com.cssl.pojo
+  configuration:
+    auto-mapping-behavior: full
+    use-generated-keys: true
+  global-config:
+      db-config:
+        #主键类型  id_worker:"数据库ID自增" auto+@TableId:"可以获得主键值"
+        id-type: auto
+        #字段策略 0:"忽略判断",1:"非 NULL 判断"),2:"非空判断"
+        field-strategy: not_empty
+        #驼峰下划线转换
+        column-underline: true
+        #数据库大写下划线转换
+        capital-mode: true
+        #逻辑删除配置
+        logic-delete-value: 0
+        logic-not-delete-value: 1
+        db-type: mysql
+      refresh: true
+
+#分页配置
+pagehelper:
+#  helperDialect: mysql  #方言  默认
+  reasonable: true      #启动合理化
+#  pageSizeZero: true    #小于pageIndex1时，pageIndex=1 默认

@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p th:each="u :${user.getRecords()}">[[${u.username}]]====[[${u.uid}]]</p>
+<p>总记录数：[[${user.getTotal()}]]</p>
+<p>总页数：[[${user.getPages()}]]</p>
+</body>
+</html>
